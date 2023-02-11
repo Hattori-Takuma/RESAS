@@ -1,0 +1,2 @@
+export const PREFECTURES = 'PREFECTURES';
+export const POPULATIONS = 'POPULATIONS';
