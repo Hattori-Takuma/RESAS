@@ -33,49 +33,49 @@ function App() {
 
   console.log(globalState, "global state check")
 
-  const values = [
-    { id: globalState.result_data.prefCode, item: globalState.result_data }
-  ];
-  console.log(values)
-  const CheckBoxItems = ({ onchange, checked }) =>
-    values.map((value) => {
-      return (
-        <label key={value.id}>
-          <input
-            type="checkbox"
-            value={values.item}
-            onChange={onchange}
-            checked={checked.includes(value.item)}
-          />
-          {value.item}
-        </label>
-      );
-    });
+  // const values = [
+  //   { id: globalState.result_data.prefCode, item: globalState.result_data }
+  // ];
+  // console.log(values)
+  // const CheckBoxItems = ({ onchange, checked }) =>
+  //   values.map((value) => {
+  //     return (
+  //       <label key={value.id}>
+  //         <input
+  //           type="checkbox"
+  //           value={values.item}
+  //           onChange={onchange}
+  //           checked={checked.includes(value.item)}
+  //         />
+  //         {value.item}
+  //       </label>
+  //     );
+  //   });
 
 
-  const InputCheckBox = () => {
-    const [checkedValues, setCheckedValues] = useState([]);
-    const handleChange = (e) => {
-      if (checkedValues.includes(e.target.value)) {
-        setCheckedValues(
-          checkedValues.filter((checkedValues) =>
-            checkedValues !== e.target.value));
-      }
-      else {
-        setCheckedValues([...checkedValues, e.target.value]);
-      }
-    };
+  // const InputCheckBox = () => {
+  //   const [checkedValues, setCheckedValues] = useState([]);
+  //   const handleChange = (e) => {
+  //     if (checkedValues.includes(e.target.value)) {
+  //       setCheckedValues(
+  //         checkedValues.filter((checkedValues) =>
+  //           checkedValues !== e.target.value));
+  //     }
+  //     else {
+  //       setCheckedValues([...checkedValues, e.target.value]);
+  //     }
+  //   };
 
-    return (
-      <div>
-        <p>
-          現在選択されている値:<b>{checkedValues.join(",")}</b>
-        </p>
-        <CheckBoxItems onChange={handleChange} checked={checkedValues} />
-      </div>
-    );
-  }
-  console.log(values)
+  //   return (
+  //     <div>
+  //       <p>
+  //         現在選択されている値:<b>{checkedValues.join(",")}</b>
+  //       </p>
+  //       <CheckBoxItems onChange={handleChange} checked={checkedValues} />
+  //     </div>
+  //   );
+  // }
+  // console.log(values)
 
 
 
@@ -87,8 +87,8 @@ function App() {
       <tr>
         <th>都道府県</th>
       </tr>
-      .{InputCheckBox}.
-      {/* <ul>
+      {/* .{InputCheckBox}. */}
+      <ul>
         {globalState.result_data.map((data, index) => (
           <div key={index}>
             {data.prefCode}
@@ -96,7 +96,7 @@ function App() {
           </div>
 
         ))}
-      </ul> */}
+      </ul>
     </>
 
   );
