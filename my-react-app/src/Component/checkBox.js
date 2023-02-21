@@ -1,57 +1,45 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../store';
 
-//checkboxコンポーネント
-const CheckBox = ({ id, value, checked, onChange }) => {
-  return (
-    <input
-      id={id}
-      type="checkbox"
-      name="inputNames"
-      checked={checked}
-      onChange={onChange}
-      value={value}
-    />
-  )
-}
 export const CheckBoxList = () => {
+  const [prefData, setPrefData] = useState([]);
+  const [checkedItems, setCheckedItems] = useState({});
+  console.log(
+    '🚀 ~ file: checkBox.js:7 ~ CheckBoxList ~ checkedItems:',
+    checkedItems
+  );
   const { globalState } = useContext(Store);
 
-  console.log(globalState, 'globalState check***')
+  useEffect(() => {
+    if (globalState.hasOwnProperty('result_data')) {
+      setPrefData(globalState.result_data);
+    }
+  }, [globalState]);
 
-  const [checkedItems, setCheckedItems] = useState({})
-
-  const handleChange = e => {
+  const handleChange = (e) => {
     //checkedItemsのstateをセット
     setCheckedItems({
       ...checkedItems,
-      [e.target.id]: e.target.checked
-    })
-    console.log('checkedItems:', checkedItems)
-  }
+      [e.target.id]: e.target.checked,
+    });
+  };
   return (
     <>
       <h2>都道府県</h2>
-      <>
-        {/* {globalState.result_data.map((item, index) => {
-          index = index + 1
-          return (
-            <label htmlFor={`id_${index}`} key={`key_${index}`}>
-              <CheckBox
-                id={`id_${index}`}
-                value={item.prefNmae}
-                onChange={handleChange}
-                checked={checkedItems[item]}
-              />
-              {item}
-            </label>
-          )
-        })} */}
-      </>
 
+      {prefData.map((item, index) => {
+        return (
+          <div key={index}>
+            <label htmlFor={item.prefCode}>{item.prefName}</label>
+            <input
+              id={item.prefCode}
+              type="checkbox"
+              name="inputNames"
+              onChange={handleChange}
+            />
+          </div>
+        );
+      })}
     </>
-  )
-}
-
-
-
+  );
+};
