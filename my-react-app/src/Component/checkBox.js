@@ -23,11 +23,13 @@ export const CheckBoxList = () => {
       [e.target.id]: e.target.checked
     })
 
-    const obj = {
-      checkedItems: checkedItems
-    };
+    const obj = { checkedItems: checkedItems };
+    console.log(obj, "配列");
+
+
     const arr = Object.keys(obj).map(key => parseInt(key));
-    console.log(arr); // [checkedItems]
+    console.log(arr, "arr"); // [NaN]
+
   }
 
   console.log(checkedItems, "チェックされているアイテム")
