@@ -23,9 +23,13 @@ export const CheckBoxList = () => {
       [e.target.id]: e.target.checked
     })
   }
+  console.log(checkedItems, "チェックされているアイテム")
+
+
   return (
     <>
       <h2>都道府県</h2>
+
       <>
         {/* {globalState.result_data.map((item, index) => {
           index = index + 1
