@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../store';
 
 export const CheckBoxList = () => {
-
   const [prefData, setPrefData] = useState([]);
   const [checkedItems, setCheckedItems] = useState({});
 
   const { globalState } = useContext(Store);
 
-  console.log(globalState, 'globalState check***')
+  console.log(globalState, 'globalState check***');
 
   useEffect(() => {
     if (globalState.hasOwnProperty('result_data')) {
@@ -16,28 +15,21 @@ export const CheckBoxList = () => {
     }
   }, [globalState]);
 
+  // こんなんはいかがでしょ。
+  useEffect(() => {
+    const test = Object.keys(checkedItems);
+    console.log('🚀 ~ file: checkBox.js:34 ~ handleChange ~ test:', test);
+  }, [checkedItems]);
+
   const handleChange = (e) => {
     //checkedItemsのstateをセット
     setCheckedItems({
       ...checkedItems,
-      [e.target.id]: e.target.checked
-    })
+      [e.target.id]: e.target.checked,
+    });
+  };
 
-    const obj = { checkedItems: checkedItems };
-    console.log(obj, "配列");
-
-
-    const arr = Object.keys(obj).map(key => parseInt(key));
-    console.log(arr, "arr"); // [NaN]
-
-  }
-
-  console.log(checkedItems, "チェックされているアイテム")
-
-
-
-
-
+  console.log(checkedItems, 'チェックされているアイテム');
 
   return (
     <>
@@ -73,10 +65,6 @@ export const CheckBoxList = () => {
           );
         })}
       </>
-
     </>
-  )
-}
-
-
-
+  );
+};
