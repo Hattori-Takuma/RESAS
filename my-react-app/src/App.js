@@ -3,8 +3,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Store } from '../src/store/index';
 import { PREFECTURES } from '../src/action/index';
 // eslint-disable-next-line
-import { fetchPrefecture } from '../src/functions/resas';
+import { fetchPrefecture, fetchGetpopulationData } from '../src/functions/resas';
 import { CheckBoxList } from '../src/Component/checkBox'
+
+
 
 function App() {
   const { globalState, setGlobalState } = useContext(Store);
@@ -19,6 +21,7 @@ function App() {
 
   const fetchData = async () => {
     const res = await fetchPrefecture()
+
     console.log(res.result, "res の中身を確認")
     setGlobalState({
       type: PREFECTURES,

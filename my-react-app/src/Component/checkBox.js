@@ -8,7 +8,7 @@ export const CheckBoxList = () => {
 
   const { globalState } = useContext(Store);
 
-  console.log(globalState, 'globalState check***')
+  console.log(globalState, 'globalState check***');
 
   useEffect(() => {
     if (globalState.hasOwnProperty('result_data')) {
@@ -16,27 +16,23 @@ export const CheckBoxList = () => {
     }
   }, [globalState]);
 
+  useEffect(() => {
+    const test = Object.keys(checkedItems);
+    console.log('🚀 ~ file: checkBox.js:34 ~ handleChange ~ test:', test);
+  }, [checkedItems]);
+
+
+
   const handleChange = (e) => {
     //checkedItemsのstateをセット
+
     setCheckedItems({
       ...checkedItems,
       [e.target.id]: e.target.checked
-    })
+    });
+  };
 
-    const obj = { checkedItems: checkedItems };
-    console.log(obj, "配列");
-
-
-    const arr = Object.keys(obj).map(key => parseInt(key));
-    console.log(arr, "arr"); // [NaN]
-
-  }
-
-  console.log(checkedItems, "チェックされているアイテム")
-
-
-
-
+  console.log(checkedItems, 'チェックされているアイテム');
 
 
   return (
@@ -44,21 +40,6 @@ export const CheckBoxList = () => {
       <h2>都道府県</h2>
 
       <>
-        {/* {globalState.result_data.map((item, index) => {
-          index = index + 1
-          return (
-            <label htmlFor={`id_${index}`} key={`key_${index}`}>
-              <CheckBox
-                id={`id_${index}`}
-                value={item.prefNmae}
-                onChange={handleChange}
-                checked={checkedItems[item]}
-              />
-              {item}
-            </label>
-          )
-        })} */}
-
         {prefData.map((item, index) => {
           return (
             <div key={index}>
