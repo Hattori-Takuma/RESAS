@@ -20,3 +20,18 @@ export const fetchGetpopulationData = async () => {
       console.log(res, "res,check")
     })
 }
+
+export const getDemographics = async (prefectures) => {
+  axios.get('https://opendata.resas-portal.go.jp/api/v1/' + requestUrls, {
+    headers: { 'X-API-KEY': 'L2W6aJTvDLkORbWHwoa2q9X0FnCknyfujbdZdWGT' }
+  })
+    .then(res => {
+      console.log(res, "--------------------")
+    })
+  // requestするURLを作成
+  const requestUrls = prefectures.map(({ prefCode }) => {
+    return `/population/composition/perYear?prefCode=${prefCode}`;
+  });
+};
+
+

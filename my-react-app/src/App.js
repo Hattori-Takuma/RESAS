@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Store } from '../src/store/index';
 import { PREFECTURES } from '../src/action/index';
 // eslint-disable-next-line
-import { fetchPrefecture, fetchGetpopulationData } from '../src/functions/resas';
+import { fetchPrefecture, getDemographics } from '../src/functions/resas';
 import { CheckBoxList } from '../src/Component/checkBox'
 
 
@@ -30,7 +30,7 @@ function App() {
   }
   console.log(globalState, "global state check")
   console.log(CheckBoxList, "CheckBoxList")
-
+  console.log(getDemographics, "----------")
 
 
 
