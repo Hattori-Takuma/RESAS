@@ -5,6 +5,7 @@ import './App.css';
 // eslint-disable-next-line
 import { CheckBoxList } from '../src/Component/checkBox';
 import { fetchPrefecture } from '../src/functions/resas';
+import { Chart } from '../src/Component/Chart';
 
 function App() {
   const { globalState, setGlobalState } = useContext(Store);
@@ -30,7 +31,7 @@ function App() {
       <tr>
         <th>都道府県</th>
       </tr>
-
+      <Chart />
       <CheckBoxList />
       {/* <ul>
         {globalState && globalState.result_data.map((data, index) => (

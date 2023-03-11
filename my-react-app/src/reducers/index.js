@@ -5,7 +5,7 @@ const reducer = (state = [], action) => {
     case PREFECTURES:
       return { ...state, result_data: action.data };
     case POPULATIONS:
-      return { ...state };
+      return { ...state, show_pref_data: action.data };
     default:
       return state;
   }

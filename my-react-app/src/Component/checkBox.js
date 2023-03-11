@@ -13,6 +13,7 @@ export const CheckBoxList = () => {
     if (globalState.hasOwnProperty('result_data')) {
       setPrefData(globalState.result_data);
     }
+    console.log(globalState)
   }, [globalState]);
 
   useEffect(() => {
