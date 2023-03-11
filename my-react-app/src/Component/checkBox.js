@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { POPULATIONS } from '../action/';
-import { getPopulationData } from '../functions/resas';
+import { fetchDemographics } from '../functions/resas';
+
 import { Store } from '../store';
 
 export const CheckBoxList = () => {
@@ -15,21 +16,17 @@ export const CheckBoxList = () => {
   }, [globalState]);
 
   useEffect(() => {
-    const prefCodes = Object.keys(checkedItems);
-    console.log(
-      '🚀 ~ file: checkBox.js:34 ~ handleChange ~ prefCodes:',
-      prefCodes
-    );
+    const fetchData = async () => {
+      const prefCodes = Object.keys(checkedItems);
+      const res = await fetchDemographics(prefCodes);
+      console.log('🚀 ~ file: checkBox.js:21 ~ fetchDemographics ~ res:', res);
+      setGlobalState({
+        type: POPULATIONS,
+        data: res,
+      });
+    };
     fetchData();
-  }, [checkedItems]);
-
-  const fetchData = async () => {
-    const res = await getPopulationData();
-    setGlobalState({
-      type: POPULATIONS,
-      data: res.result,
-    });
-  };
+  }, [checkedItems, setGlobalState]);
 
   const handleChange = (e) => {
     //checkedItemsのstateをセット
@@ -42,24 +39,19 @@ export const CheckBoxList = () => {
   return (
     <>
       <h2>都道府県</h2>
-
-
-      <>
-        {prefData.map((item, index) => {
-          return (
-            <div key={index}>
-              <label htmlFor={item.prefCode}>{item.prefName}</label>
-              <input
-                id={item.prefCode}
-                type="checkbox"
-                name="inputNames"
-                onChange={handleChange}
-              />
-            </div>
-          );
-        })}
-      </>
+      {prefData.map((item, index) => {
+        return (
+          <div key={index}>
+            <label htmlFor={item.prefCode}>{item.prefName}</label>
+            <input
+              id={item.prefCode}
+              type="checkbox"
+              name="inputNames"
+              onChange={handleChange}
+            />
+          </div>
+        );
+      })}
     </>
   );
 };
-

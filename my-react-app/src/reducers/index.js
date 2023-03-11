@@ -1,23 +1,14 @@
-import { PREFECTURES, POPULATIONS } from '../action/index'
+import { POPULATIONS, PREFECTURES } from '../action/index';
 
 const reducer = (state = [], action) => {
   switch (action.type) {
-
-
     case PREFECTURES:
-      console.log(action.data, "action の中身を確認")
-      return { ...state, result_data: action.data }
-
-    default:
-      return state
-
-
+      return { ...state, result_data: action.data };
     case POPULATIONS:
-      return { state }
-
-
+      return { ...state };
+    default:
+      return state;
   }
-
 };
 
 export default reducer;
