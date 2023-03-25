@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { POPULATIONS } from '../action/';
 import { fetchDemographics } from '../functions/resas';
-
 import { Store } from '../store';
 
 export const CheckBoxList = () => {
@@ -53,6 +52,9 @@ export const CheckBoxList = () => {
           </div>
         );
       })}
+      <div id="chart-container">
+
+      </div>
     </>
   );
 };

@@ -1,32 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import Highcharts from 'highcharts';
+import { POPULATIONS } from '../action/';
+import reducer from '../reducers/index';
 
 export const Chart = () => {
+  const [state, dispatch] = useReducer(reducer, []);
+  const [year, setYear] = useState('');
+  const [value, setValue] = useState('');
+
   useEffect(() => {
     createChart();
+
+    dispatch({
+      type: POPULATIONS,
+      year,
+      value,
+    });
+
+    setYear('');
+    setValue('');
   }, []);
 
+
+
+
   const createChart = () => {
+
     Highcharts.chart('chart-container', {
       chart: {
-        type: 'bar'
+        type: 'line'
       },
       title: {
-        text: 'Sample Chart'
+        text: '総人口推移'
       },
       xAxis: {
-        categories: ['A', 'B', 'C', 'D', 'E']
+        categories: [year]
       },
       yAxis: {
         title: {
-          text: 'Value'
+          text: '人口'
         }
       },
       series: [{
-        name: 'Series 1',
-        data: [1, 2, 3, 4, 5]
+        name: '都道府県名',
+
+        data: [value]
       }]
     });
+
   }
 
   return (
