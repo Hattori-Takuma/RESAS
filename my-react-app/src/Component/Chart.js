@@ -30,8 +30,7 @@ export const Chart = () => {
           };
           series.push(tempData)
         })
-
-
+        // values = globalState.show_pref_data[0].data.map((d) => d.value)
       }
     }
 

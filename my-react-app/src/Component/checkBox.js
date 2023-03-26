@@ -19,10 +19,10 @@ export const CheckBoxList = () => {
     const fetchData = async () => {
       const prefCodes = Object.keys(checkedItems);
       const res = await fetchDemographics(prefCodes);
-      console.log('🚀 ~ file: checkBox.js:21 ~ fetchDemographics ~ res:', res);
+      console.log('🚀 ~ file: checkBox.js:21 ~ fetchDemographics ~ res:', res, prefCodes);
       setGlobalState({
         type: POPULATIONS,
-        data: res,
+        data: res, prefCodes
       });
     };
     fetchData();
