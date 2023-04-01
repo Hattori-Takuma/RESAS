@@ -18,19 +18,22 @@ export const Chart = () => {
     let years = []
     // let values = []
     let series = []
-    let name = []
+    // let names = []
 
     if (globalState.show_pref_data !== undefined) {
       if (globalState.show_pref_data.length !== 0) {
         years = globalState.show_pref_data[0].data.map((d) => d.year);
+        // names = globalState.show_pref_data[0].prefName.map((d) => d.prefName);
+
         globalState.show_pref_data.forEach((spd) => {
           let tempData = {
-            name: 'test',
+            name: 'name',
+            // name: globalState.show_pref_data[0].prefName.map((d) => d.prefName),
             data: spd.data.map((d) => Number(d.value)),
           };
           series.push(tempData)
         })
-        // values = globalState.show_pref_data[0].data.map((d) => d.value)
+        // values = globalState.show_pref_data[0].data.map((d) => d.value) show_pref_data[0].prefName
       }
     }
 

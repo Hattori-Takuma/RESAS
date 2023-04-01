@@ -18,7 +18,8 @@ export const CheckBoxList = () => {
   useEffect(() => {
     const fetchData = async () => {
       const prefCodes = Object.keys(checkedItems);
-      const res = await fetchDemographics(prefCodes);
+      const res = await fetchDemographics(prefCodes, globalState.result_data);
+
       console.log('🚀 ~ file: checkBox.js:21 ~ fetchDemographics ~ res:', res, prefCodes);
       setGlobalState({
         type: POPULATIONS,
