@@ -12,18 +12,22 @@ export const CheckBoxList = () => {
     if (globalState.hasOwnProperty('result_data')) {
       setPrefData(globalState.result_data);
     }
-    console.log(globalState)
   }, [globalState]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const prefCodes = Object.keys(checkedItems);
+      const prefCodes = [];
+      for (const key in checkedItems) {
+        if (checkedItems.hasOwnProperty(key) && checkedItems[key]) {
+          prefCodes.push(key);
+        }
+      }
       const res = await fetchDemographics(prefCodes, globalState.result_data);
 
-      console.log('🚀 ~ file: checkBox.js:21 ~ fetchDemographics ~ res:', res, prefCodes);
       setGlobalState({
         type: POPULATIONS,
-        data: res, prefCodes
+        data: res,
+        prefCodes,
       });
     };
     fetchData();
@@ -53,9 +57,7 @@ export const CheckBoxList = () => {
           </div>
         );
       })}
-      <div id="chart-container">
-
-      </div>
+      <div id="chart-container"></div>
     </>
   );
 };
