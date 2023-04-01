@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { extractNumberFromUrl, prefCodeToPrefName } from "../functions/utils"
+import { extractNumberFromUrl, prefCodeToPrefName } from '../functions/utils';
 
 export const fetchPrefecture = async () => {
   try {
@@ -40,32 +40,13 @@ export const fetchDemographics = async (prefCodes, result_data) => {
       }
     );
   });
-
   const responses = await axios.all(requests);
-  console.log(
-    '🚀 ~ file: resas.js:45 ~ fetchDemographics ~ responses:',
-    responses
-  );
-
   const populationData = responses.map((response) => {
     const url = response.config.url;
-
     const prefCode = extractNumberFromUrl(url);
-    console.log(
-      '🚀 ~ file: resas.js:51 ~ populationData ~ prefCode:',
-    );
     const prefName = prefCodeToPrefName(prefCode, result_data);
-    response.data.result.data[0].prefName = prefName
+    response.data.result.data[0].prefName = prefName;
     return response.data.result.data[0];
   });
-  console.log(
-    '🚀 ~ file: resas.js:52 ~ populationData ~ populationData:',
-    populationData
-  );
-
   return populationData;
 };
-
-
-
-

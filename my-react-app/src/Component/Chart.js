@@ -1,7 +1,6 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import React, { useContext, useEffect, useReducer, useState } from 'react';
-import { POPULATIONS } from '../action/';
+import React, { useContext, useReducer } from 'react';
 import reducer from '../reducers/index';
 import { Store } from '../store';
 
@@ -10,14 +9,11 @@ export const Chart = () => {
   // const [year, setYear] = useState('');
   // const [value, setValue] = useState('');
   const { globalState, setGlobalState } = useContext(Store);
-  console.log('🚀 ~ file: Chart.js:12 ~ Chart ~ globalState:', globalState);
-
-
 
   const createOptions = () => {
-    let years = []
+    let years = [];
     // let values = []
-    let series = []
+    let series = [];
     // let names = []
 
     if (globalState.show_pref_data !== undefined) {
@@ -27,12 +23,12 @@ export const Chart = () => {
 
         globalState.show_pref_data.forEach((spd) => {
           let tempData = {
-            name: 'name',
+            name: spd.prefName,
             // name: globalState.show_pref_data[0].prefName.map((d) => d.prefName),
             data: spd.data.map((d) => Number(d.value)),
           };
-          series.push(tempData)
-        })
+          series.push(tempData);
+        });
         // values = globalState.show_pref_data[0].data.map((d) => d.value) show_pref_data[0].prefName
       }
     }
@@ -49,13 +45,11 @@ export const Chart = () => {
           text: '人口',
         },
       },
-      series
+      series,
     };
 
-    return options
-  }
-
-
+    return options;
+  };
 
   // const createChart = () => {
   //   Highcharts.chart('chart-container', {
